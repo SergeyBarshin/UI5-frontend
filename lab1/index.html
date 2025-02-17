@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <div id="result" class="result">0</div>
+
+        <div>
+          <!--горизонтальный ряд из четырех кнопок-->
+          <div>
+            <button id="btn_op_clear" class="my-btn secondary">C</button>
+            <button id="btn_op_sign" class="my-btn secondary">+/-</button>
+            <button id="btn_op_percent" class="my-btn secondary">%</button>
+            <button id="btn_op_div" class="my-btn secondary">/</button>
+          </div>
+
+          <div>
+            <button id="btn_digit_7" class="my-btn">7</button>
+            <button id="btn_digit_8" class="my-btn">8</button>
+            <button id="btn_digit_9" class="my-btn">9</button>
+            <button id="btn_op_mult" class="my-btn primary">x</button>
+          </div>
+
+          <div>
+            <button id="btn_digit_4" class="my-btn">4</button>
+            <button id="btn_digit_5" class="my-btn">5</button>
+            <button id="btn_digit_6" class="my-btn">6</button>
+            <button id="btn_op_minus" class="my-btn primary">-</button>
+          </div>
+
+          <div>
+            <button id="btn_digit_1" class="my-btn">1</button>
+            <button id="btn_digit_2" class="my-btn">2</button>
+            <button id="btn_digit_3" class="my-btn">3</button>
+            <button id="btn_op_plus" class="my-btn primary">+</button>
+          </div>
+
+          <div>
+            <button id="btn_digit_0" class="my-btn">0</button>
+            <button id="btn_digit_dot" class="my-btn secondary">.</button>
+            <button id="btn_op_equal" class="my-btn primary execute">=</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-content">
+          <label for="group">Выберите группу:</label>
+          <select id="group" class="dropdown">
+            <option value="iu5-41b">ИУ5-41Б</option>
+            <option value="iu5-42b">ИУ5-42Б</option>
+            <option value="iu5-43b">ИУ5-43Б</option>
+            <option value="iu5-44b">ИУ5-44Б</option>
+            <option value="iu5-45b">ИУ5-45Б</option>
+            <option value="iu5-46b">ИУ5-46Б</option>
+          </select>
+
+          <details class="details">
+            <summary>Автор</summary>
+            <p><strong>ФИО:</strong> Баршин Сергей Леонидович</p>
+            <p><strong>Группа:</strong> ИУ5-41Б</p>
+          </details>
+
+          <h2 class="footer-title">
+            ЛР выполнена Баршиным Сергеем Леонидовичем
+            <a href="https://github.com/SergeyBarshin/UI5-frontend">
+              <button id="btn_git" class="my-btn">GIT</button>
+            </a>
+          </h2>
+
+          <p class="footer-text">
+            Цель данной лабораторной работы -
+            <u>знакомство</u>
+            с инструментами построения пользовательских интерфейсов web-сайтов:
+            <u>HTML</u>, <u>CSS</u>.
+          </p>
+        </div>
+      </div>
+
+      <button id="theme-toggle" class="theme-toggle-btn">Сменить тему</button>
+    </div>
+  </body>
+</html>
