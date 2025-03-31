@@ -1,6 +1,6 @@
 /*
     TODO:
-    - сделать накопление результата, до нажатия да =
+    - сделать накопление результата\множественные операции
 */
 
 window.onload = function () {
@@ -11,6 +11,7 @@ window.onload = function () {
     let outputElement = document.getElementById("result");
 
     function updateDisplay(value) {
+        // тут нужно добавить проверку
         outputElement.innerHTML = value;
     }
 
@@ -95,6 +96,7 @@ window.onload = function () {
 
     document.querySelectorAll('[id^="btn_digit_"]').forEach(button => {
         button.onclick = function () {
+            //
             onDigitButtonClicked(this.innerHTML);
         };
     });

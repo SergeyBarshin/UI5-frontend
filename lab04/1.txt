@@ -1,0 +1,14 @@
+curl localhost:8000/stocks/
+
+curl -X POST localhost:8000/stocks/ \
+-H "Content-Type: application/json" \
+-d '{
+  "id": 7,
+  "category": "Бакалея",
+  "src": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-89/297/714/012/710/33/100063950006b0.png",
+  "title": "Макароны",
+  "text": "80 ₽"
+}'
+
+
+curl -X GET localhost:8000/stocks/search?field=category&val=Овощи%20и%20фрукты
