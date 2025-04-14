@@ -1,4 +1,5 @@
 import { ProductComponent } from "../../components/product/index.js";
+import { stockUrls } from '../../utils/stockUrls.js';
 
 export class ProductPage {
     constructor(parent, productId) {
@@ -11,7 +12,7 @@ export class ProductPage {
 
     async fetchProduct() {
         try {
-            const response = await fetch(`http://localhost:8000/stocks/${this.productId}`);
+            const response = await fetch(stockUrls.getStockById(this.productId));
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return await response.json();
         } catch (error) {

@@ -54,6 +54,12 @@ class StockDAO {
         return filteredStocks.map(stock => new this(stock.id, stock.category, stock.src, stock.title, stock.text))
     }
 
+    static findByFieldLike(field, val) {
+        const stocks = StocksRepository.read()
+        const filteredStocks = stocks.filter((s) => s[field]?.toLowerCase().includes(val.toLowerCase()))
+        return filteredStocks.map(stock => new this(stock.id, stock.category, stock.src, stock.title, stock.text))
+    }
+
     static getAllCategories() {
         const stocks = StocksRepository.read()
         const categories = stocks.map(stock => stock.category)

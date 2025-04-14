@@ -27,11 +27,10 @@ class StocksController {
             if (!field || !val) {
                 return res.status(400).json({ status: 'Bad Request', message: err.message });
             }
-            console.log(field, val)
             const stocks = StocksService.findStocksByField(field, val);
 
             if (!stocks.length) {
-                return res.status(404).json({ message: "Записи не найдены" });
+                return res.status(400).json({ message: "Записи не найдены" });
             }
 
             res.status(200).json(stocks);
@@ -40,6 +39,24 @@ class StocksController {
         }
     }
 
+    static findStockByFieldLike(req, res) {
+        try {
+            const { field, val } = req.query;
+
+            if (!field || !val) {
+                return res.status(400).json({ status: 'Bad Request', message: 'Поле и значение обязательны' });
+            }
+
+            const stocks = StocksService.findStockByFieldLike(field, val);
+            if (!stocks.length) {
+                return res.status(400).json({ message: "Записи не найдены" });
+            }
+
+            res.status(200).json(stocks);
+        } catch (error) {
+            res.status(500).json({ message: "Ошибка сервера", error: error.message });
+        }
+    }
 
     static addStock(req, res) {
         try {

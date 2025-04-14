@@ -11,11 +11,18 @@ class StocksService {
 
     static findStocksByField(field, val) {
         if (field !== undefined && val !== undefined) {
-            //console.log(field, val)
             return StockDAO.findByField(field, val).map(stock => stock.toJSON())
         }
 
         return StockDAO.read().map(stock => stock.toJSON())
+    }
+
+    static findStockByFieldLike(field, val) {
+        if (field !== undefined && val !== undefined) {
+            return StockDAO.findByFieldLike(field, val).map(stock => stock.toJSON())
+        }
+
+        return StockDAO.read().map(stock => stock.toJSON());
     }
 
     static getAllCategories() {

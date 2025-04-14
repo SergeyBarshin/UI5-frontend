@@ -1,4 +1,5 @@
 import { CategoryPage } from "../category/index.js";
+import { stockUrls } from '../../utils/stockUrls.js';
 
 
 export class MainMenuPage {
@@ -10,7 +11,7 @@ export class MainMenuPage {
 
     async fetchAndSetCategories() {
         try {
-            const response = await fetch('http://localhost:8000/stocks/categories');
+            const response = await fetch(stockUrls.getCategories());
             if (!response.ok) throw new Error('Failed to fetch categories');
             this.categories = await response.json();
         } catch (error) {
