@@ -1,5 +1,6 @@
 import { ProductComponent } from "../../components/product/index.js";
 import { stockUrls } from '../../utils/stockUrls.js';
+import { makeXhrRequest } from '../../utils/xhrHelper.js';
 
 export class ProductPage {
     constructor(parent, productId) {
@@ -12,11 +13,10 @@ export class ProductPage {
 
     async fetchProduct() {
         try {
-            const response = await fetch(stockUrls.getStockById(this.productId));
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return await response.json();
+            const productData = await makeXhrRequest('GET', stockUrls.getStockById(this.productId));
+            return productData;
         } catch (error) {
-            console.error('Failed to fetch product:', error);
+            console.error('Failed to fetch product:', error.message);
             return null;
         }
     }

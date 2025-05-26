@@ -1,5 +1,6 @@
 import { CategoryPage } from "../category/index.js";
 import { stockUrls } from '../../utils/stockUrls.js';
+import { makeXhrRequest } from '../../utils/xhrHelper.js';
 
 
 export class MainMenuPage {
@@ -11,11 +12,11 @@ export class MainMenuPage {
 
     async fetchAndSetCategories() {
         try {
-            const response = await fetch(stockUrls.getCategories());
-            if (!response.ok) throw new Error('Failed to fetch categories');
-            this.categories = await response.json();
+            // Используем хелпер XHR
+            const categoriesData = await makeXhrRequest('GET', stockUrls.getCategories());
+            this.categories = categoriesData;
         } catch (error) {
-            console.error('Error fetching categories:', error);
+            console.error('Error fetching categories:', error.message);
             this.categories = [];
         }
     }

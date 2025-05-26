@@ -2,6 +2,7 @@
 import { ProductCardComponent } from "../../components/product-card/index.js";
 import { ProductPage } from "../product/index.js";
 import { stockUrls } from '../../utils/stockUrls.js';
+import { makeXhrRequest } from '../../utils/xhrHelper.js';
 
 export class SearchResultsPage {
     constructor(parent, searchTerm) {
@@ -14,20 +15,17 @@ export class SearchResultsPage {
         try {
             const apiUrl = stockUrls.searchByFieldLike('title', this.searchTerm);
             console.log('Fetching search results from:', apiUrl);
-
-            const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error(`Ошибка сети: ${response.status} ${response.statusText}`);
-            }
-            this.products = await response.json();
+            const searchData = await makeXhrRequest('GET', apiUrl);
+            this.products = searchData; // Данные уже распарсены
             console.log('Search results received:', this.products);
             return true;
         } catch (error) {
-            console.error('Ошибка при поиске товаров:', error);
+            console.error('Ошибка при поиске товаров:', error.message);
             this.products = [];
             return false;
         }
     }
+
 
     // Обработчик клика по карточке товара (такой же, как в CategoryPage)
     handleProductClick(e) {

@@ -1,6 +1,7 @@
 import { ProductCardComponent } from "../../components/product-card/index.js";
 import { ProductPage } from "../product/index.js";
 import { stockUrls } from '../../utils/stockUrls.js';
+import { makeXhrRequest } from '../../utils/xhrHelper.js';
 
 export class CategoryPage {
     constructor(parent, category) {
@@ -11,12 +12,13 @@ export class CategoryPage {
 
     async fetchProducts() {
         try {
-            const response = await fetch(stockUrls.searchByFieldExact('category', this.category));
-            if (!response.ok) throw new Error('Failed to fetch products');
-            this.products = await response.json();
+            const apiUrl = stockUrls.searchByFieldExact('category', this.category);
+            console.log('Fetching products from:', apiUrl);
+            const productsData = await makeXhrRequest('GET', apiUrl);
+            this.products = productsData;
             return true;
         } catch (error) {
-            console.error('Error fetching products:', error);
+            console.error('Error fetching products:', error.message);
             this.products = [];
             return false;
         }
